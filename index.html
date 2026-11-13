@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>D Hossain — Coder, Tech Specialist & Educator</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-body: #f4f7fb;
+            --bg-card: #ffffff;
+            --bg-subtle: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-color: rgba(15, 23, 42, 0.08);
+            --shadow-card: 0 12px 30px -8px rgba(15, 23, 42, 0.08);
+
+            /* Coder Accent */
+            --coder-primary: #4f46e5;
+            --coder-soft: rgba(79, 70, 229, 0.1);
+
+            /* Mobile Mart (Crimson Red) */
+            --mm-primary: #dc2626;
+            --mm-gradient: linear-gradient(135deg, #ef4444, #b91c1c);
+            --mm-soft: rgba(220, 38, 38, 0.08);
+            --mm-border: rgba(220, 38, 38, 0.25);
+
+            /* Ghum Heen Shopno (Teal & Pink) */
+            --ghs-teal: #0d9488;
+            --ghs-pink: #ec4899;
+            --ghs-soft: rgba(236, 72, 153, 0.08);
+            --ghs-border: rgba(20, 184, 166, 0.3);
+
+            /* Tripura Jankari (YouTube Red) */
+            --yt-primary: #ff0000;
+            --yt-gradient: linear-gradient(135deg, #ff0000, #cc0000);
+            --yt-soft: rgba(255, 0, 0, 0.08);
+            --yt-border: rgba(255, 0, 0, 0.25);
+
+            /* DC HUB (Royal Blue & Gold) */
+            --dc-primary: #1e3a8a;
+            --dc-accent: #f59e0b;
+            --dc-gradient: linear-gradient(135deg, #1e3a8a, #0284c7);
+            --dc-soft: rgba(30, 58, 138, 0.08);
+            --dc-border: rgba(30, 58, 138, 0.25);
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-subtle: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-card: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+
+            --coder-primary: #818cf8;
+            --coder-soft: rgba(129, 140, 248, 0.15);
+
+            --mm-primary: #f87171;
+            --mm-soft: rgba(248, 113, 113, 0.12);
+            --mm-border: rgba(248, 113, 113, 0.3);
+
+            --ghs-teal: #2dd4bf;
+            --ghs-pink: #f472b6;
+            --ghs-soft: rgba(244, 114, 182, 0.12);
+            --ghs-border: rgba(45, 212, 191, 0.3);
+
+            --yt-primary: #ff4d4d;
+            --yt-soft: rgba(255, 77, 77, 0.12);
+            --yt-border: rgba(255, 77, 77, 0.3);
+
+            --dc-primary: #60a5fa;
+            --dc-soft: rgba(96, 165, 250, 0.12);
+            --dc-border: rgba(96, 165, 250, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, transform 0.2s ease;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        body {
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(239, 68, 68, 0.07), transparent 35%),
+                radial-gradient(circle at 100% 45%, rgba(20, 184, 166, 0.08), transparent 40%),
+                radial-gradient(circle at 20% 90%, rgba(30, 58, 138, 0.08), transparent 40%);
+            padding: 18px 14px 45px;
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        /* ১. হিরো ও কোডার পরিচিতি */
+        .hero-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 26px;
+            padding: clamp(24px, 4vw, 36px);
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .hero-top-strip {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, #4f46e5, #dc2626, #ec4899, #14b8a6, #f59e0b);
+        }
+
+        .avatar-wrapper {
+            width: clamp(98px, 18vw, 122px);
+            height: clamp(98px, 18vw, 122px);
+            margin: 0 auto 14px;
+            border-radius: 50%;
+            padding: 3.5px;
+            background: linear-gradient(135deg, #4f46e5, #ec4899, #f59e0b);
+        }
+
+        .avatar-img {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--bg-card);
+            display: block;
+        }
+
+        .hero-title {
+            font-size: clamp(25px, 5vw, 32px);
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+        }
+
+        .role-pills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 6px;
+            margin-bottom: 14px;
+        }
+
+        .role-pill {
+            font-size: 12px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: var(--coder-soft);
+            color: var(--coder-primary);
+        }
+
+        .hero-bio {
+            max-width: 680px;
+            margin: 0 auto 18px;
+            font-size: clamp(13.5px, 2.5vw, 15px);
+            color: var(--text-secondary);
+        }
+
+        .coder-banner {
+            max-width: 680px;
+            margin: 0 auto 20px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-left: 4px solid var(--coder-primary);
+            border-radius: 14px;
+            padding: 12px 16px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .coder-banner i {
+            font-size: 20px;
+            color: var(--coder-primary);
+            flex-shrink: 0;
+        }
+
+        .coder-banner p {
+            font-size: 13px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .social-row {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .social-btn {
+            width: 42px;
+            height: 42px;
+            border-radius: 12px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .social-btn:hover { transform: translateY(-2px); }
+        .social-btn.wa:hover { color: #16a34a; border-color: #16a34a; }
+        .social-btn.ig:hover { color: #e11d48; border-color: #e11d48; }
+        .social-btn.fb:hover { color: #2563eb; border-color: #2563eb; }
+        .social-btn.li:hover { color: #0284c7; border-color: #0284c7; }
+
+        .contact-bar {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .contact-link {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 12.5px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            word-break: break-all;
+        }
+
+        /* মাঝখানের কন্ট্রোল ডক */
+        .center-controls-dock {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 2px 0;
+        }
+
+        .dock-pill-btn {
+            background: var(--bg-card);
+            border: 1.5px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(15, 23, 42, 0.06);
+        }
+
+        .dock-pill-btn:hover {
+            transform: translateY(-2px);
+            border-color: var(--coder-primary);
+            color: var(--coder-primary);
+        }
+
+        .dock-pill-btn i {
+            color: var(--coder-primary);
+            font-size: 15px;
+        }
+
+        /* গ্রিড লেআউট */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+            gap: 20px;
+        }
+
+        .brand-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: clamp(18px, 3.5vw, 24px);
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            flex-wrap: nowrap;
+        }
+
+        .logo-box {
+            width: 54px;
+            height: 54px;
+            border-radius: 15px;
+            object-fit: cover;
+            background: #ffffff;
+            padding: 3px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+        }
+
+        .logo-box.round-logo {
+            border-radius: 50%;
+            padding: 2px;
+        }
+
+        .card-heading {
+            min-width: 0;
+            flex: 1;
+        }
+
+        .card-heading h2 {
+            font-size: clamp(18px, 3.5vw, 21px);
+            font-weight: 800;
+            line-height: 1.25;
+            margin-bottom: 3px;
+        }
+
+        .card-badge {
+            display: inline-block;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 2px 10px;
+            border-radius: 50px;
+        }
+
+        /* ২. MOBILE MART (RED THEME) */
+        .card-mm { border-top: 4px solid #dc2626; }
+        .card-mm .logo-box { border: 1.5px solid var(--mm-border); object-fit: contain; }
+        .card-mm .card-badge { background: var(--mm-soft); color: var(--mm-primary); }
+
+        .service-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .service-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px 14px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .service-box i {
+            color: var(--mm-primary);
+            font-size: 17px;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .service-box h3 {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 2px;
+        }
+
+        .service-box p {
+            font-size: 12.8px;
+            color: var(--text-secondary);
+            line-height: 1.45;
+        }
+
+        .inline-call {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-top: 5px;
+            color: var(--mm-primary);
+            font-weight: 700;
+            font-size: 12.5px;
+            text-decoration: none;
+            background: var(--mm-soft);
+            padding: 3px 10px;
+            border-radius: 8px;
+        }
+
+        /* ভিডিও শোকেস ও এম্বেড স্টাইল */
+        .video-showcase-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--mm-border);
+            border-radius: 16px;
+            padding: 12px;
+            margin-top: 4px;
+        }
+
+        .video-label {
+            font-size: 12.5px;
+            font-weight: 700;
+            color: var(--mm-primary);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+
+        .live-dot {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 11px;
+            background: var(--mm-soft);
+            padding: 2px 8px;
+            border-radius: 20px;
+        }
+
+        .local-video-wrapper {
+            width: 100%;
+            border-radius: 12px;
+            overflow: hidden;
+            background: #000000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .local-video-wrapper video {
+            width: 100%;
+            max-height: 400px;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* ফেসবুক রিলস স্মার্ট ভিডিও ব্যানার */
+        .fb-video-card {
+            margin-top: 10px;
+            background: linear-gradient(135deg, #1877f2, #0f172a);
+            border-radius: 14px;
+            padding: 14px;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            text-decoration: none;
+            box-shadow: 0 6px 14px rgba(24, 119, 242, 0.22);
+        }
+
+        .fb-video-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .fb-vid-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .fb-play-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 15px;
+            flex-shrink: 0;
+        }
+
+        .fb-vid-title {
+            font-size: 13px;
+            font-weight: 700;
+            display: block;
+            line-height: 1.3;
+        }
+
+        .fb-vid-sub {
+            font-size: 11px;
+            opacity: 0.85;
+            display: block;
+        }
+
+        /* ইনস্টাগ্রাম রিল প্লেয়ার বক্স (TrebEdit ও লাইভ উভয়ের জন্য) */
+        .ig-player-box {
+            margin-top: 10px;
+            width: 100%;
+            height: 440px;
+            border-radius: 14px;
+            overflow: hidden;
+            background: #0f172a;
+            position: relative;
+            border: 1px solid var(--border-color);
+        }
+
+        .ig-player-box iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+            position: relative;
+            z-index: 2;
+        }
+
+        .address-strip {
+            background: var(--mm-soft);
+            border: 1px dashed var(--mm-border);
+            color: var(--text-primary);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .address-strip i { color: var(--mm-primary); }
+
+        .btn-mm {
+            background: var(--mm-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(220, 38, 38, 0.25);
+        }
+
+        /* ৩. GHUM HEEN SHOPNO (TEAL & PINK THEME) */
+        .card-ghs { border-top: 4px solid #ec4899; }
+        .card-ghs .logo-box { border: 1.5px solid var(--ghs-border); }
+        .card-ghs .card-badge { background: var(--ghs-soft); color: var(--ghs-pink); }
+
+        .ghs-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .ghs-channel {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 14px;
+        }
+
+        .ghs-ch-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .ghs-ch-title {
+            font-size: 14px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .ghs-tag {
+            font-size: 10.5px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: var(--ghs-soft);
+            color: var(--ghs-pink);
+            white-space: nowrap;
+        }
+
+        .ghs-btns {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .ghs-link {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 10px;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .ghs-link:hover {
+            border-color: var(--ghs-pink);
+            color: var(--ghs-pink);
+        }
+
+        /* ৪. TRIPURA JANKARI (YOUTUBE RED THEME) */
+        .card-yt { border-top: 4px solid #ff0000; }
+        .card-yt .logo-box { border: 2px solid var(--yt-border); }
+        .card-yt .card-badge { background: var(--yt-soft); color: var(--yt-primary); }
+
+        .yt-stats-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+        }
+
+        .yt-stat-box {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .yt-stat-num {
+            font-size: 18px;
+            font-weight: 800;
+            color: var(--yt-primary);
+            display: block;
+        }
+
+        .yt-stat-label {
+            font-size: 12px;
+            color: var(--text-muted);
+            font-weight: 600;
+        }
+
+        .yt-topics {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+
+        .yt-topic-tag {
+            font-size: 12px;
+            font-weight: 600;
+            background: var(--yt-soft);
+            color: var(--yt-primary);
+            padding: 4px 10px;
+            border-radius: 8px;
+        }
+
+        .btn-yt {
+            background: var(--yt-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(255, 0, 0, 0.25);
+        }
+
+        /* ৫. DC HUB (NAVY BLUE & GOLD THEME) */
+        .card-dc { border-top: 4px solid #1e3a8a; }
+        .card-dc .logo-box { border: 1.5px solid var(--dc-border); object-fit: contain; }
+        .card-dc .card-badge { background: var(--dc-soft); color: var(--dc-primary); }
+
+        .dc-highlight {
+            background: var(--dc-soft);
+            border-left: 3.5px solid #f59e0b;
+            padding: 14px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            color: var(--text-secondary);
+        }
+
+        .dc-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+        }
+
+        .dc-chip {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .dc-chip i { color: #f59e0b; }
+
+        .address-dc {
+            background: var(--dc-soft);
+            border: 1px dashed var(--dc-border);
+            padding: 10px 14px;
+            border-radius: 12px;
+            font-size: 12.5px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .address-dc i { color: var(--dc-primary); }
+
+        .btn-dc {
+            background: var(--dc-gradient);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 12px 16px;
+            border-radius: 14px;
+            font-size: 13.5px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 6px 16px rgba(30, 58, 138, 0.25);
+        }
+
+        /* ৬. এক্সপ্লোর মোর বাটন (tool.html) */
+        .explore-btn {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            padding: 18px 24px;
+            border-radius: 22px;
+            background: linear-gradient(135deg, #4f46e5, #0284c7, #0d9488);
+            color: #ffffff;
+            text-decoration: none;
+            box-shadow: 0 12px 26px -6px rgba(79, 70, 229, 0.35);
+        }
+
+        .explore-btn:hover { transform: translateY(-2px); }
+
+        .explore-left {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .explore-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 13px;
+            background: rgba(255, 255, 255, 0.18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 19px;
+            flex-shrink: 0;
+        }
+
+        .explore-title {
+            font-size: 16.5px;
+            font-weight: 800;
+            display: block;
+        }
+
+        .explore-sub {
+            font-size: 12px;
+            opacity: 0.9;
+            display: block;
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <!-- ১. হিরো ও কোডার পরিচিতি -->
+        <section class="hero-card">
+            <div class="hero-top-strip"></div>
+            
+            <div class="avatar-wrapper">
+                <img src="profile.jpg" alt="D Hossain" class="avatar-img" onerror="this.src='https://via.placeholder.com/150/4f46e5/ffffff?text=DH'">
+            </div>
+            
+            <h1 class="hero-title">D Hossain</h1>
+            
+            <div class="role-pills">
+                <span class="role-pill" data-en="Web & Android Developer" data-bn="ওয়েব ও অ্যান্ড্রয়েড ডেভেলপার">Web & Android Developer</span>
+                <span class="role-pill" data-en="Hardware & CCTV Specialist" data-bn="হার্ডওয়্যার ও সিসিটিভি স্পেশালিস্ট">Hardware & CCTV Specialist</span>
+                <span class="role-pill" data-en="Tech Educator" data-bn="কম্পিউটার শিক্ষক">Tech Educator</span>
+            </div>
+            
+            <p class="hero-bio" 
+               data-en="Hello, I'm Deluar Hossain — a passionate coder, hardware engineer, and educator based in Sonamura. From building modern websites and Android applications to hardware diagnostics, security systems, and teaching young minds, I love turning technology into practical solutions."
+               data-bn="হ্যালো, আমি দেলোয়ার হোসেন — সোনামুড়ার একজন কোডার, হার্ডওয়্যার ইঞ্জিনিয়ার এবং শিক্ষক। আধুনিক ওয়েবসাইট ও অ্যান্ড্রয়েড অ্যাপ ডেভেলপমেন্ট থেকে শুরু করে মোবাইল-পিসি রিপেয়ারিং, সিসিটিভি সলিউশন এবং বাচ্চাদের কম্পিউটার শিক্ষার মাধ্যমে প্রযুক্তিকে সহজ করে তোলাই আমার লক্ষ্য।">
+                Hello, I'm Deluar Hossain — a passionate coder, hardware engineer, and educator based in Sonamura. From building modern websites and Android applications to hardware diagnostics, security systems, and teaching young minds, I love turning technology into practical solutions.
+            </p>
+
+            <!-- কোডার হাইলাইট -->
+            <div class="coder-banner">
+                <i class="fas fa-code"></i>
+                <p data-en="Coder & Software Creator: I write clean code to build custom responsive websites and user-friendly Android applications tailored for real-world needs."
+                   data-bn="কোডার ও অ্যাপ ডেভেলপার: আমি বিভিন্ন ধরনের কোডিং করি এবং আধুনিক রেসপন্সিভ ওয়েবসাইট ও অ্যান্ড্রয়েড অ্যাপ্লিকেশন (Android App) ডেভেলপমেন্ট করে থাকি।">
+                    Coder & Software Creator: I write clean code to build custom responsive websites and user-friendly Android applications tailored for real-world needs.
+                </p>
+            </div>
+
+            <!-- সোশ্যাল মিডিয়া -->
+            <div class="social-row">
+                <a href="https://wa.me/916909998882" target="_blank" class="social-btn wa" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/ghum.heen.shopno?srtk=MXdsNWtzcHRkcnpuNw==" target="_blank" class="social-btn ig" title="Instagram"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.facebook.com/share/1KTq295vov/" target="_blank" class="social-btn fb" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.linkedin.com/in/deluar-hossain-aa2b2125a/?lipi=urn%3Ali%3Apage%3Ap_mwlite_feed%3BtNxxcU%2BzQZ2vL6R4yhwA2w%3D%3D" target="_blank" class="social-btn li" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+
+            <!-- কন্টাক্ট -->
+            <div class="contact-bar">
+                <a href="tel:8798705561" class="contact-link"><i class="fas fa-phone-alt" style="color:#4f46e5;"></i> 8798705561</a>
+                <a href="mailto:Email.dhossain@gmail.com" class="contact-link"><i class="fas fa-envelope" style="color:#ec4899;"></i> Email.dhossain@gmail.com</a>
+            </div>
+        </section>
+
+        <!-- মাঝখানের কন্ট্রোল বাটন -->
+        <div class="center-controls-dock">
+            <button class="dock-pill-btn" onclick="toggleLanguage()">
+                <i class="fas fa-language"></i> <span id="langText">বাংলা ভাষা</span>
+            </button>
+            <button class="dock-pill-btn" onclick="toggleTheme()" id="themeBtn">
+                <i class="fas fa-moon"></i> <span id="themeText" data-en="Dark Mode" data-bn="ডার্ক মোড">Dark Mode</span>
+            </button>
+        </div>
+
+        <!-- কার্ড গ্রিড (১. Mobile Mart -> ২. Ghum Heen Shopno -> ৩. Tripura Jankari -> ৪. DC HUB) -->
+        <div class="cards-grid">
+            
+            <!-- ১ম কার্ড: MOBILE MART (RED THEME + Cctv.mp4 + CCTV FB Video) -->
+            <section class="brand-card card-mm">
+                <div>
+                    <div class="card-top" style="margin-bottom: 16px;">
+                        <img src="mobilemart-logo.png" alt="Mobile Mart" class="logo-box" onerror="this.src='https://via.placeholder.com/100/dc2626/ffffff?text=M'">
+                        <div class="card-heading">
+                            <h2>Mobile Mart</h2>
+                            <span class="card-badge" data-en="Mobile, PC & CCTV Hub" data-bn="মোবাইল, পিসি ও সিসিটিভি হাব">Mobile, PC & CCTV Hub</span>
+                        </div>
+                    </div>
+
+                    <div class="service-stack">
+                        <!-- মোবাইল সফটওয়্যার ও আনলক -->
+                        <div class="service-box">
+                            <i class="fas fa-mobile-screen-button"></i>
+                            <div>
+                                <h3 data-en="Mobile Hardware, Software & Unlocking" data-bn="মোবাইল হার্ডওয়্যার, সফটওয়্যার ও আনলক">Mobile Hardware, Software & Unlocking</h3>
+                                <p data-en="Complete smartphone hardware & software repair. Forgotten screen locks/passwords are unlocked safely (valid proof of device ownership is mandatory)."
+                                   data-bn="মোবাইলের হার্ডওয়্যার ও সফটওয়্যার সমস্যার সমাধান করা হয়। পাসওয়ার্ড ভুলে গেলে তা আনলক করা হয় (অবশ্যই মোবাইলটি নিজের হওয়ার উপযুক্ত প্রমাণ থাকতে হবে)।">
+                                    Complete smartphone hardware & software repair. Forgotten screen locks/passwords are unlocked safely (valid proof of device ownership is mandatory).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- পিসি বিল্ড ও সার্ভিসিং -->
+                        <div class="service-box">
+                            <i class="fas fa-desktop"></i>
+                            <div>
+                                <h3 data-en="New PC Builds & Old PC Servicing" data-bn="নতুন পিসি বিল্ড ও পুরনো পিসি সার্ভিসিং">New PC Builds & Old PC Servicing</h3>
+                                <p data-en="Custom new desktop PC builds tailored to your budget, plus complete repair and servicing for old PCs & laptops. Feel free to contact us!"
+                                   data-bn="এখানে নতুন কাস্টম পিসি বিল্ড করা হয় এবং পুরনো পিসি ও ল্যাপটপ সার্ভিসিং করা হয়। যেকোনো প্রয়োজনে অবশ্যই যোগাযোগ করবেন।">
+                                    Custom new desktop PC builds tailored to your budget, plus complete repair and servicing for old PCs & laptops. Feel free to contact us!
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- সিসিটিভি সার্ভিস -->
+                        <div class="service-box">
+                            <i class="fas fa-video"></i>
+                            <div>
+                                <h3 data-en="CCTV Installation & Servicing" data-bn="সিসিটিভি ক্যামেরা ইনস্টলেশন ও সার্ভিসিং">CCTV Installation & Servicing</h3>
+                                <p data-en="Looking for CCTV camera installation or maintenance? Contact us directly for reliable security setup."
+                                   data-bn="যারা যারা সিসিটিভি ক্যামেরা ইনস্টলেশন এবং সার্ভিসিং করাতে চান, তারা অবশ্যই নিচের নম্বরে যোগাযোগ করবেন।">
+                                    Looking for CCTV camera installation or maintenance? Contact us directly for reliable security setup.
+                                </p>
+                                <a href="tel:6909998882" class="inline-call"><i class="fas fa-phone"></i> 6909998882</a>
+                            </div>
+                        </div>
+
+                        <!-- লোকাল ভিডিও প্লেয়ার (Cctv.mp4 - স্ক্রল অটোপ্লে) -->
+                        <div class="video-showcase-box">
+                            <div class="video-label">
+                                <span><i class="fas fa-video"></i> <span data-en="CCTV Work Preview" data-bn="সিসিটিভি কাজের ভিডিও">CCTV Work Preview</span></span>
+                                <span class="live-dot"><i class="fas fa-play"></i> Autoplay</span>
+                            </div>
+                            <div class="local-video-wrapper">
+                                <video id="cctvVideo" src="Cctv.mp4" muted loop playsinline controls preload="metadata">
+                                    Your browser does not support the video tag.
+                                </video>
+                            </div>
+
+                            <!-- সিসিটিভি কাজের ফেসবুক ভিডিও উদাহরণ -->
+                            <a href="https://www.facebook.com/share/r/1MKKFcFAPx/" target="_blank" class="fb-video-card">
+                                <div class="fb-vid-left">
+                                    <div class="fb-play-circle"><i class="fas fa-play"></i></div>
+                                    <div>
+                                        <span class="fb-vid-title" data-en="Watch CCTV Installation Demo" data-bn="সিসিটিভি ক্যামেরার কাজের উদাহরণ দেখুন">Watch CCTV Installation Demo</span>
+                                        <span class="fb-vid-sub" data-en="Live setup example on Facebook Reel" data-bn="ফেসবুক রিলসে সরাসরি কাজের ভিডিও">Live setup example on Facebook Reel</span>
+                                    </div>
+                                </div>
+                                <i class="fab fa-facebook fa-lg"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="address-strip">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span data-en="Address: Mobile Mart, Office Road, Sonamura" data-bn="ঠিকানা: মোবাইল মার্ট, অফিস রোড, সোনামুড়া">Address: Mobile Mart, Office Road, Sonamura</span>
+                    </div>
+                    <a href="https://www.instagram.com/mobilemart.co.in?xtok=cDdmazJjNG91dGly" target="_blank" class="btn-mm">
+                        <i class="fab fa-instagram"></i>
+                        <span data-en="Follow Mobile Mart" data-bn="মোবাইল মার্ট ইনস্টাগ্রাম দেখুন">Follow Mobile Mart</span>
+                    </a>
+                </div>
+            </section>
+
+            <!-- ২য় কার্ড: GHUM HEEN SHOPNO (TrebEdit ও লাইভ সাইট উভয়েই দৃশ্যমান রিল প্লেয়ার) -->
+            <section class="brand-card card-ghs">
+                <div>
+                    <div class="card-top" style="margin-bottom: 14px;">
+                        <img src="ghumheen-logo.png" alt="Ghum Heen Shopno" class="logo-box" onerror="this.src='https://via.placeholder.com/100/0d9488/ec4899?text=GHS'">
+                        <div class="card-heading">
+                            <h2>Ghum Heen Shopno</h2>
+                            <span class="card-badge" data-en="Stories, Shayari & Comedy" data-bn="গল্প, শায়েরি ও কমেডি">Stories, Shayari & Comedy</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;"
+                       data-en="Beyond coding and hardware, Ghum Heen Shopno is my creative space where emotions meet words and humor."
+                       data-bn="কোডিং ও হার্ডওয়্যার কাজের বাইরে এটি আমার সৃজনশীল জগত—যেখানে অনুভূতিগুলো গল্প, শায়েরি এবং হাস্যরসের মাধ্যমে ফুটে ওঠে।">
+                        Beyond coding and hardware, Ghum Heen Shopno is my creative space where emotions meet words and humor.
+                    </p>
+
+                    <div class="ghs-stack">
+                        <!-- Main Page + Instagram Reel Player -->
+                        <div class="ghs-channel">
+                            <div class="ghs-ch-head">
+                                <span class="ghs-ch-title"><i class="fas fa-feather-alt" style="color:var(--ghs-teal);"></i> Ghum Heen Shopno</span>
+                                <span class="ghs-tag" data-en="Stories & Shayari" data-bn="গল্প ও শায়েরি">Stories & Shayari</span>
+                            </div>
+                            <p style="font-size: 12.5px; color: var(--text-secondary);" data-en="Heartfelt stories, poetry, and relatable shayari posts." data-bn="বিভিন্ন ধরনের গল্প, কবিতা ও শায়েরি লিখে এখানে পোস্ট করা হয়।">Heartfelt stories, poetry, and relatable shayari posts.</p>
+                            
+                            <!-- ইনস্টাগ্রাম রিলস প্লেয়ার -->
+                            <div class="ig-player-box">
+                                <iframe 
+                                    src="https://www.instagram.com/reel/Dcl5xvYyOiT/embed/" 
+                                    allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" 
+                                    allowfullscreen>
+                                </iframe>
+                            </div>
+
+                            <div class="ghs-btns">
+                                <a href="https://www.instagram.com/ghum.heen.shopno?rpxt=MXdsNWtzcHRkcnpuNw==" target="_blank" class="ghs-link"><i class="fab fa-instagram"></i> Instagram</a>
+                                <a href="https://www.facebook.com/share/1c1w6EtXon/" target="_blank" class="ghs-link"><i class="fab fa-facebook"></i> Facebook</a>
+                            </div>
+                        </div>
+
+                        <!-- Comedy Page + Facebook Comedy Reel -->
+                        <div class="ghs-channel">
+                            <div class="ghs-ch-head">
+                                <span class="ghs-ch-title"><i class="fas fa-laugh-beam" style="color:var(--ghs-pink);"></i> Ghum Heen Shopno 2.0</span>
+                                <span class="ghs-tag" data-en="Comedy Videos" data-bn="কমেডি ভিডিও">Comedy Videos</span>
+                            </div>
+                            <p style="font-size: 12.5px; color: var(--text-secondary);" data-en="Entertaining comedy videos and funny short skits." data-bn="মাঝে মাঝে মজার ও কমেডি ভিডিও তৈরি করে এখানে আপলোড করি।">Entertaining comedy videos and funny short skits.</p>
+                            
+                            <a href="https://www.facebook.com/share/r/1A2HWgodXT/" target="_blank" class="fb-video-card" style="background: linear-gradient(135deg, #ec4899, #8b5cf6);">
+                                <div class="fb-vid-left">
+                                    <div class="fb-play-circle"><i class="fas fa-laugh-squint"></i></div>
+                                    <div>
+                                        <span class="fb-vid-title" data-en="Watch Featured Comedy Video" data-bn="মজার কমেডি ভিডিওটি দেখুন">Watch Featured Comedy Video</span>
+                                        <span class="fb-vid-sub" data-en="Tap to play on Facebook Reels" data-bn="ফেসবুক রিলসে ভিডিওটি প্লে করুন">Tap to play on Facebook Reels</span>
+                                    </div>
+                                </div>
+                                <i class="fas fa-play-circle fa-lg"></i>
+                            </a>
+
+                            <div class="ghs-btns">
+                                <a href="https://www.instagram.com/ghum.heen.shopno2.0?xtok=MTIza3VkeGI5ZDVoOA==" target="_blank" class="ghs-link"><i class="fab fa-instagram"></i> Instagram 2.0</a>
+                                <a href="https://www.facebook.com/share/1A2hvghMrL/" target="_blank" class="ghs-link"><i class="fab fa-facebook"></i> Facebook 2.0</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ৩য় কার্ড: TRIPURA JANKARI YOUTUBE CHANNEL (YOUTUBE RED THEME) -->
+            <section class="brand-card card-yt">
+                <div>
+                    <div class="card-top" style="margin-bottom: 14px;">
+                        <img src="tripurajankari-logo.png" alt="Tripura Jankari" class="logo-box round-logo" onerror="this.src='https://via.placeholder.com/100/ff0000/ffffff?text=TJ'">
+                        <div class="card-heading">
+                            <h2>Tripura Jankari</h2>
+                            <span class="card-badge" data-en="Official YouTube Channel" data-bn="অফিশিয়াল ইউটিউব চ্যানেল">Official YouTube Channel</span>
+                        </div>
+                    </div>
+
+                    <p style="font-size: 13.5px; color: var(--text-secondary); margin-bottom: 14px;"
+                       data-en="Tripura Jankari is my Bengali infotainment and knowledge YouTube channel featuring inspiring biographies, interesting unknown facts, word meanings, and essential mobile & internet security tips."
+                       data-bn="ত্রিপুরা জানকারি (Tripura Jankari) হলো আমার বাংলা ইনফোটেইনমেন্ট ও নলেজ ইউটিউব চ্যানেল—যেখানে জনপ্রিয় ব্যক্তিত্বদের জীবনী, অজানা তথ্য, শব্দের অর্থ এবং মোবাইল ও ইন্টারনেট সিকিউরিটি বিষয়ক প্রয়োজনীয় ভিডিও তৈরি করা হয়।">
+                        Tripura Jankari is my Bengali infotainment and knowledge YouTube channel featuring inspiring biographies, interesting unknown facts, word meanings, and essential mobile & internet security tips.
+                    </p>
+
+                    <div class="yt-stats-row" style="margin-bottom: 14px;">
+                        <div class="yt-stat-box">
+                            <span class="yt-stat-num">5.09K+</span>
+                            <span class="yt-stat-label" data-en="Subscribers" data-bn="সাবস্ক্রাইবার">Subscribers</span>
+                        </div>
+                        <div class="yt-stat-box">
+                            <span class="yt-stat-num">60+</span>
+                            <span class="yt-stat-label" data-en="Informative Videos" data-bn="তথ্যমূলক ভিডিও">Informative Videos</span>
+                        </div>
+                    </div>
+
+                    <div class="yt-topics">
+                        <span class="yt-topic-tag" data-en="Biographies" data-bn="জীবন কাহিনী">Biographies</span>
+                        <span class="yt-topic-tag" data-en="Tech & Security Tips" data-bn="টেক ও সিকিউরিটি টিপস">Tech & Security Tips</span>
+                        <span class="yt-topic-tag" data-en="Unknown Facts" data-bn="অজানা তথ্য">Unknown Facts</span>
+                    </div>
+                </div>
+
+                <a href="https://youtube.com/@tripurajankari?si=rlac2ZuhhmDY0itK" target="_blank" class="btn-yt">
+                    <i class="fab fa-youtube fa-lg"></i>
+                    <span data-en="Visit & Subscribe on YouTube" data-bn="ইউটিউব চ্যানেল ভিজিট ও সাবস্ক্রাইব করুন">Visit & Subscribe on YouTube</span>
+                </a>
+            </section>
+
+            <!-- ৪র্থ কার্ড: DC HUB COMPUTER INSTITUTE (NAVY & GOLD THEME) -->
+            <section class="brand-card card-dc">
+                <div>
+                    <div class="card-top" style="margin-bottom: 16px;">
+                        <img src="dchub-logo.png" alt="DC HUB" class="logo-box" onerror="this.src='https://via.placeholder.com/100/1e3a8a/f59e0b?text=DC'">
+                        <div class="card-heading">
+                            <h2>DC HUB</h2>
+                            <span class="card-badge" data-en="Computer Training Institute" data-bn="কম্পিউটার ট্রেনিং ইনস্টিটিউট">Computer Training Institute</span>
+                        </div>
+                    </div>
+
+                    <div class="dc-highlight" style="margin-bottom: 14px;">
+                        <p data-en="DC HUB is my dedicated computer institute where I teach computer fundamentals, coding basics, and practical digital skills to kids in a fun, friendly, and easy-to-understand language."
+                           data-bn="ডিসি হাব (DC HUB) হলো আমার একটি কম্পিউটার ইনস্টিটিউট, যেখানে আমি বাচ্চাদেরকে একদম সহজ ও আনন্দদায়ক ভাষায় কম্পিউটার এবং প্রযুক্তির হাতেখড়ি দিয়ে থাকি।">
+                            DC HUB is my dedicated computer institute where I teach computer fundamentals, coding basics, and practical digital skills to kids in a fun, friendly, and easy-to-understand language.
+                        </p>
+                    </div>
+
+                    <div class="dc-features">
+                        <div class="dc-chip">
+                            <i class="fas fa-child"></i>
+                            <span data-en="Kid-Friendly Learning" data-bn="সহজ ভাষায় শিক্ষা">Kid-Friendly Learning</span>
+                        </div>
+                        <div class="dc-chip">
+                            <i class="fas fa-laptop-code"></i>
+                            <span data-en="Practical Computer" data-bn="প্র্যাকটিক্যাল কম্পিউটার">Practical Computer</span>
+                        </div>
+                        <div class="dc-chip">
+                            <i class="fas fa-lightbulb"></i>
+                            <span data-en="Creative Thinking" data-bn="ক্রিয়েটিভ লার্নিং">Creative Thinking</span>
+                        </div>
+                        <div class="dc-chip">
+                            <i class="fas fa-award"></i>
+                            <span data-en="Personal Guidance" data-bn="যত্নসহকারে গাইডেন্স">Personal Guidance</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="address-dc">
+                        <i class="fas fa-location-dot"></i>
+                        <span data-en="Address: DC HUB, Office Road, Sonamura" data-bn="ঠিকানা: DC HUB, অফিস রোড, সোনামুড়া">Address: DC HUB, Office Road, Sonamura</span>
+                    </div>
+                    <a href="https://wa.me/916909998882?text=Hello%20D%20Hossain,%20I%20want%20to%20know%20about%20DC%20HUB%20computer%20classes." target="_blank" class="btn-dc">
+                        <i class="fab fa-whatsapp"></i>
+                        <span data-en="Enquire About Classes" data-bn="ক্লাস সম্পর্কে জানতে মেসেজ করুন">Enquire About Classes</span>
+                    </a>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- এক্সপ্লোর মোর বাটন (tool.html) -->
+        <a href="tool.html" class="explore-btn">
+            <div class="explore-left">
+                <div class="explore-icon"><i class="fas fa-toolbox"></i></div>
+                <div>
+                    <span class="explore-title" data-en="Explore More" data-bn="এক্সপ্লোর মোর (Explore More)">Explore More</span>
+                    <span class="explore-sub" data-en="Open Utility Tools & Personal Hub" data-bn="কাজের টুলস ও পার্সোনাল হাব ওপেন করুন">Open Utility Tools & Personal Hub</span>
+                </div>
+            </div>
+            <i class="fas fa-arrow-right"></i>
+        </a>
+
+        <footer>
+            <p>© 2026 D Hossain • Mobile Mart & DC HUB, Sonamura. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('themeBtn');
+            const isLight = html.getAttribute('data-theme') === 'light';
+            const nextTheme = isLight ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', nextTheme);
+            
+            const icon = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            const labelEn = isLight ? 'Light Mode' : 'Dark Mode';
+            const labelBn = isLight ? 'লাইট মোড' : 'ডার্ক মোড';
+            const currentLabel = currentLang === 'en' ? labelEn : labelBn;
+            
+            btn.innerHTML = `${icon} <span id="themeText" data-en="${labelEn}" data-bn="${labelBn}">${currentLabel}</span>`;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'bn' : 'en';
+            document.getElementById('langText').textContent = currentLang === 'en' ? 'বাংলা ভাষা' : 'English';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        // স্ক্রল করার সময় Cctv.mp4 ভিডিও অটোপ্লে ও পজ করার স্ক্রিপ্ট
+        document.addEventListener("DOMContentLoaded", function() {
+            const video = document.getElementById('cctvVideo');
+            if (video) {
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            video.play().catch(err => console.log("Autoplay waiting for interaction:", err));
+                        } else {
+                            video.pause();
+                        }
+                    });
+                }, { threshold: 0.4 });
+                
+                observer.observe(video);
+            }
+        });
+    </script>
+</body>
+</html>

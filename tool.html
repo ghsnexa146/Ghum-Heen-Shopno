@@ -22,8 +22,6 @@
             --primary-soft: rgba(79, 70, 229, 0.1);
             --accent-teal: #0d9488;
             --accent-red: #dc2626;
-            --accent-amber: #d97706;
-            --accent-blue: #0284c7;
         }
 
         [data-theme="dark"] {
@@ -283,7 +281,7 @@
             border: 1px solid var(--border-color);
         }
 
-        /* ইন্টেন্ট লঞ্চার গ্রিড (vnROM স্টাইল ক্লিন বাটন কার্ড) */
+        /* ইন্টেন্ট লঞ্চার গ্রিড */
         .intent-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
@@ -317,16 +315,17 @@
             min-width: 0;
         }
 
-        .intent-icon {
-            width: 40px;
-            height: 40px;
+        /* অরিজিনাল অ্যাপ আইকন স্টাইল */
+        .app-real-icon {
+            width: 44px;
+            height: 44px;
             border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 17px;
+            object-fit: cover;
             flex-shrink: 0;
-            color: #ffffff;
+            background: #ffffff;
+            padding: 2px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
         }
 
         .intent-info {
@@ -361,17 +360,7 @@
             flex-shrink: 0;
         }
 
-        /* আইকন কালার ভ্যারিয়েন্ট */
-        .ic-indigo { background: linear-gradient(135deg, #4f46e5, #6366f1); }
-        .ic-blue   { background: linear-gradient(135deg, #0284c7, #38bdf8); }
-        .ic-amber  { background: linear-gradient(135deg, #d97706, #f59e0b); }
-        .ic-teal   { background: linear-gradient(135deg, #0d9488, #14b8a6); }
-        .ic-red    { background: linear-gradient(135deg, #dc2626, #ef4444); }
-        .ic-green  { background: linear-gradient(135deg, #16a34a, #22c55e); }
-        .ic-pink   { background: linear-gradient(135deg, #db2777, #ec4899); }
-        .ic-dark   { background: linear-gradient(135deg, #334155, #0f172a); }
-
-        /* ইউনিক ফিচার: কাস্টম প্যাকেজ / ইন্টেন্ট লঞ্চার বক্স */
+        /* কাস্টম প্যাকেজ লঞ্চার বক্স */
         .custom-launcher-box {
             display: flex;
             flex-wrap: wrap;
@@ -511,7 +500,7 @@
                 <!-- Open Settings -->
                 <a href="intent://com.android.settings/#Intent;scheme=android-app;end" class="intent-item" data-keywords="settings system android সেটিংস">
                     <div class="intent-left">
-                        <div class="intent-icon ic-indigo"><i class="fas fa-cog"></i></div>
+                        <img src="settings.png.png" alt="Settings" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/4f46e5/ffffff?text=Set'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Open Settings" data-bn="সেটিংস ওপেন করুন">Open Settings</span>
                             <span class="intent-sub">com.android.settings</span>
@@ -523,7 +512,7 @@
                 <!-- Set Screen Smart Lock -->
                 <a href="intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end" class="intent-item" data-keywords="screen lock smartlock pin pattern password লক">
                     <div class="intent-left">
-                        <div class="intent-icon ic-amber"><i class="fas fa-lock"></i></div>
+                        <img src="smartlock.png.png" alt="Smart Lock" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/d97706/ffffff?text=Lock'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Set Screen Smart Lock" data-bn="স্ক্রিন স্মার্ট লক সেট করুন">Set Screen Smart Lock</span>
                             <span class="intent-sub">promote_smartlock_scheme</span>
@@ -535,7 +524,7 @@
                 <!-- Google Quick Search -->
                 <a href="intent://com.google.android.googlequicksearchbox/#Intent;scheme=android-app;end" class="intent-item" data-keywords="google search assistant voice গুগল সার্চ">
                     <div class="intent-left">
-                        <div class="intent-icon ic-blue"><i class="fab fa-google"></i></div>
+                        <img src="google.png.png" alt="Google" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/0284c7/ffffff?text=G'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Google Search Box" data-bn="গুগল সার্চ বক্স">Google Search Box</span>
                             <span class="intent-sub">googlequicksearchbox</span>
@@ -547,7 +536,7 @@
                 <!-- Open Chrome -->
                 <a href="intent://com.android.chrome/#Intent;scheme=android-app;end" class="intent-item" data-keywords="chrome browser web ক্রোম ব্রাউজার">
                     <div class="intent-left">
-                        <div class="intent-icon ic-teal"><i class="fab fa-chrome"></i></div>
+                        <img src="chrome.png.png" alt="Chrome" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/0d9488/ffffff?text=Chr'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Open Chrome Browser" data-bn="ক্রোম ব্রাউজার">Open Chrome Browser</span>
                             <span class="intent-sub">com.android.chrome</span>
@@ -559,7 +548,7 @@
                 <!-- Open YouTube -->
                 <a href="intent://com.google.android.youtube/#Intent;scheme=android-app;end" class="intent-item" data-keywords="youtube video ইউটিউব">
                     <div class="intent-left">
-                        <div class="intent-icon ic-red"><i class="fab fa-youtube"></i></div>
+                        <img src="youtube.png.png" alt="YouTube" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/dc2626/ffffff?text=YT'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Open YouTube" data-bn="ইউটিউব ওপেন করুন">Open YouTube</span>
                             <span class="intent-sub">com.google.android.youtube</span>
@@ -571,7 +560,7 @@
                 <!-- Open Gmail -->
                 <a href="intent://com.google.android.gm/#Intent;scheme=android-app;end" class="intent-item" data-keywords="gmail email mail account জিমেইল">
                     <div class="intent-left">
-                        <div class="intent-icon ic-red"><i class="fas fa-envelope"></i></div>
+                        <img src="gmail.png.png" alt="Gmail" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/dc2626/ffffff?text=GM'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Open Gmail" data-bn="জিমেইল ওপেন করুন">Open Gmail</span>
                             <span class="intent-sub">com.google.android.gm</span>
@@ -583,7 +572,7 @@
                 <!-- Google Play Store -->
                 <a href="intent://com.android.vending/#Intent;scheme=android-app;end" class="intent-item" data-keywords="play store apps google প্লে স্টোর">
                     <div class="intent-left">
-                        <div class="intent-icon ic-green"><i class="fab fa-google-play"></i></div>
+                        <img src="playstore.png.png" alt="Play Store" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/16a34a/ffffff?text=Play'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Google Play Store" data-bn="গুগল প্লে স্টোর">Google Play Store</span>
                             <span class="intent-sub">com.android.vending</span>
@@ -595,7 +584,7 @@
                 <!-- Google Maps -->
                 <a href="intent://com.google.android.apps.maps/#Intent;scheme=android-app;end" class="intent-item" data-keywords="maps navigation location ম্যাপস">
                     <div class="intent-left">
-                        <div class="intent-icon ic-teal"><i class="fas fa-map-marked-alt"></i></div>
+                        <img src="maps.png.png" alt="Maps" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/0d9488/ffffff?text=Map'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Google Maps" data-bn="গুগল ম্যাপস">Google Maps</span>
                             <span class="intent-sub">com.google.android.apps.maps</span>
@@ -606,7 +595,7 @@
             </div>
         </section>
 
-        <!-- সেকশন ২: ব্র্যান্ড ভিত্তিক অ্যাপ ও স্টোর লঞ্চার (Vivo, Oppo, OnePlus, Redmi, Samsung) -->
+        <!-- সেকশন ২: ব্র্যান্ড ভিত্তিক অ্যাপ ও স্টোর লঞ্চার -->
         <section class="tool-section" data-section>
             <div class="sec-header">
                 <h2 class="sec-title">
@@ -620,7 +609,7 @@
                 <!-- Vivo EasyShare -->
                 <a href="intent://com.vivo.easyshare/#Intent;scheme=android-app;end" class="intent-item" data-keywords="vivo easyshare easy share transfer ভিভো ইজি শেয়ার">
                     <div class="intent-left">
-                        <div class="intent-icon ic-blue"><i class="fas fa-share-alt"></i></div>
+                        <img src="easyshare.png.png" alt="EasyShare" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/0284c7/ffffff?text=ES'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Vivo EasyShare" data-bn="ভিভো ইজি শেয়ার (EasyShare)">Vivo EasyShare</span>
                             <span class="intent-sub">Vivo • com.vivo.easyshare</span>
@@ -632,7 +621,7 @@
                 <!-- Vivo V-Appstore -->
                 <a href="intent://com.bbk.appstore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="vivo appstore store v-appstore ভিভো স্টোর">
                     <div class="intent-left">
-                        <div class="intent-icon ic-indigo"><i class="fas fa-store"></i></div>
+                        <img src="vappstore.png.png" alt="V-Appstore" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/4f46e5/ffffff?text=VApp'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Vivo V-Appstore" data-bn="ভিভো অ্যাপ স্টোর">Vivo V-Appstore</span>
                             <span class="intent-sub">Vivo • com.bbk.appstore</span>
@@ -644,7 +633,7 @@
                 <!-- Oppo & OnePlus Phone Clone -->
                 <a href="intent://com.coloros.backuprestore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oppo oneplus realme phone clone backup restore অপ্পো ওয়ানপ্লাস ফোন ক্লোন">
                     <div class="intent-left">
-                        <div class="intent-icon ic-green"><i class="fas fa-clone"></i></div>
+                        <img src="oppoclone.png" alt="Phone Clone" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/16a34a/ffffff?text=Clone'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Oppo / OnePlus Phone Clone" data-bn="ফোন ক্লোন (Oppo / OnePlus)">Oppo / OnePlus Phone Clone</span>
                             <span class="intent-sub">com.coloros.backuprestore</span>
@@ -656,7 +645,7 @@
                 <!-- OnePlus Clone Phone (Alternative Package) -->
                 <a href="intent://com.oneplus.backuprestore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oneplus clone phone backup ওয়ানপ্লাস ক্লোন">
                     <div class="intent-left">
-                        <div class="intent-icon ic-red"><i class="fas fa-sync-alt"></i></div>
+                        <img src="oneplusclone.png.png" alt="OnePlus Clone" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/dc2626/ffffff?text=1+'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="OnePlus Clone Phone (Alt)" data-bn="ওয়ানপ্লাস ক্লোন ফোন">OnePlus Clone Phone (Alt)</span>
                             <span class="intent-sub">com.oneplus.backuprestore</span>
@@ -668,7 +657,7 @@
                 <!-- Oppo / Realme App Market -->
                 <a href="intent://com.heytap.market/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oppo realme app market store অপ্পো অ্যাপ মার্কেট">
                     <div class="intent-left">
-                        <div class="intent-icon ic-teal"><i class="fas fa-shopping-bag"></i></div>
+                        <img src="oppomarket.png.png" alt="Oppo Market" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/0d9488/ffffff?text=Mkt'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Oppo App Market" data-bn="অপ্পো অ্যাপ মার্কেট">Oppo App Market</span>
                             <span class="intent-sub">Oppo/Realme • com.heytap.market</span>
@@ -680,7 +669,7 @@
                 <!-- Redmi / Xiaomi GetApps -->
                 <a href="intent://com.xiaomi.mipicks/#Intent;scheme=android-app;end" class="intent-item" data-keywords="redmi xiaomi poco getapps get apps store রেডমি গেট অ্যাপস">
                     <div class="intent-left">
-                        <div class="intent-icon ic-amber"><i class="fas fa-box-open"></i></div>
+                        <img src="getapps.png.png" alt="GetApps" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/d97706/ffffff?text=Get'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Redmi / Xiaomi GetApps" data-bn="রেডমি গেট অ্যাপস (GetApps)">Redmi / Xiaomi GetApps</span>
                             <span class="intent-sub">Xiaomi • com.xiaomi.mipicks</span>
@@ -692,7 +681,7 @@
                 <!-- Xiaomi ShareMe -->
                 <a href="intent://com.xiaomi.midrop/#Intent;scheme=android-app;end" class="intent-item" data-keywords="redmi xiaomi shareme mi drop শেয়ার মি">
                     <div class="intent-left">
-                        <div class="intent-icon ic-pink"><i class="fas fa-paper-plane"></i></div>
+                        <img src="shareme.png.png" alt="ShareMe" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/db2777/ffffff?text=SM'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Xiaomi ShareMe" data-bn="শাওমি শেয়ারমি (ShareMe)">Xiaomi ShareMe</span>
                             <span class="intent-sub">Xiaomi • com.xiaomi.midrop</span>
@@ -704,7 +693,7 @@
                 <!-- Samsung My Files -->
                 <a href="intent://com.sec.android.app.myfiles/#Intent;scheme=android-app;end" class="intent-item" data-keywords="samsung my files file manager স্যামসাং মাই ফাইলস">
                     <div class="intent-left">
-                        <div class="intent-icon ic-amber"><i class="fas fa-folder-open"></i></div>
+                        <img src="myfiles.png" alt="My Files" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/d97706/ffffff?text=File'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Samsung My Files" data-bn="স্যামসাং মাই ফাইলস">Samsung My Files</span>
                             <span class="intent-sub">Samsung • com.sec.android.app.myfiles</span>
@@ -716,7 +705,7 @@
                 <!-- Samsung Galaxy Store -->
                 <a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end" class="intent-item" data-keywords="samsung galaxy store apps স্যামসাং গ্যালাক্সি স্টোর">
                     <div class="intent-left">
-                        <div class="intent-icon ic-indigo"><i class="fas fa-bag-shopping"></i></div>
+                        <img src="galaxystore.png" alt="Galaxy Store" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/4f46e5/ffffff?text=GStore'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Samsung Galaxy Store" data-bn="স্যামসাং গ্যালাক্সি স্টোর">Samsung Galaxy Store</span>
                             <span class="intent-sub">Samsung • com.sec.android.app.samsungapps</span>
@@ -725,10 +714,10 @@
                     <span class="open-pill">Samsung</span>
                 </a>
 
-                <!-- Activity Launcher (If Installed) -->
+                <!-- Activity Launcher -->
                 <a href="intent://de.szalkowski.activitylauncher/#Intent;scheme=android-app;end" class="intent-item" data-keywords="activity launcher hidden settings অ্যাক্টিভিটি লঞ্চার">
                     <div class="intent-left">
-                        <div class="intent-icon ic-dark"><i class="fas fa-rocket"></i></div>
+                        <img src="activitylauncher.png" alt="Activity Launcher" class="app-real-icon" onerror="this.src='https://via.placeholder.com/80/334155/ffffff?text=Act'">
                         <div class="intent-info">
                             <span class="intent-name" data-en="Activity Launcher" data-bn="অ্যাক্টিভিটি লঞ্চার">Activity Launcher</span>
                             <span class="intent-sub">de.szalkowski.activitylauncher</span>
@@ -739,7 +728,7 @@
             </div>
         </section>
 
-        <!-- সেকশন ৩: ইউনিক ফিচার - কাস্টম প্যাকেজ লঞ্চার -->
+        <!-- সেকশন ৩: কাস্টম প্যাকেজ লঞ্চার -->
         <section class="tool-section">
             <div class="sec-header">
                 <h2 class="sec-title">
@@ -802,7 +791,6 @@
             });
         }
 
-        // লাইভ সার্চ ফিল্টার
         function filterTools() {
             const query = document.getElementById('searchInput').value.toLowerCase().trim();
             const items = document.querySelectorAll('.intent-item');
@@ -818,7 +806,6 @@
             });
         }
 
-        // কাস্টম প্যাকেজ লঞ্চার
         function setPkg(pkgName) {
             document.getElementById('customPkgInput').value = pkgName;
         }

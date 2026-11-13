@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Utility Tools & Android Hub — D Hossain</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-body: #f4f7fb;
+            --bg-card: #ffffff;
+            --bg-subtle: #f8fafc;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-muted: #64748b;
+            --border-color: rgba(15, 23, 42, 0.08);
+            --shadow-card: 0 12px 30px -8px rgba(15, 23, 42, 0.08);
+
+            --primary: #4f46e5;
+            --primary-soft: rgba(79, 70, 229, 0.1);
+            --accent-teal: #0d9488;
+            --accent-red: #dc2626;
+            --accent-amber: #d97706;
+            --accent-blue: #0284c7;
+        }
+
+        [data-theme="dark"] {
+            --bg-body: #090d16;
+            --bg-card: #111827;
+            --bg-subtle: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.08);
+            --shadow-card: 0 16px 36px -8px rgba(0, 0, 0, 0.5);
+
+            --primary: #818cf8;
+            --primary-soft: rgba(129, 140, 248, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Plus Jakarta Sans', 'Hind Siliguri', sans-serif;
+            transition: background-color 0.25s ease, border-color 0.25s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        html, body {
+            width: 100%;
+            overflow-x: hidden;
+            background-color: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.5;
+        }
+
+        body {
+            background-image: 
+                radial-gradient(circle at 0% 0%, rgba(79, 70, 229, 0.08), transparent 35%),
+                radial-gradient(circle at 100% 30%, rgba(13, 148, 136, 0.08), transparent 40%),
+                radial-gradient(circle at 20% 90%, rgba(220, 38, 38, 0.06), transparent 40%);
+            padding: 16px 14px 45px;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(14px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .main-wrapper {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        /* টপ নেভিগেশন বার */
+        .top-nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            padding: 12px 16px;
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
+            color: var(--text-primary);
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            padding: 8px 14px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .back-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateX(-2px);
+        }
+
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .pill-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 8px 14px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 12.5px;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .pill-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        .pill-btn i { color: var(--primary); }
+
+        /* হিরো হেডার ও সার্চ বার */
+        .hub-header {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 22px 20px;
+            box-shadow: var(--shadow-card);
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 0.5s ease both;
+        }
+
+        .hub-strip {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #4f46e5, #0d9488, #dc2626, #f59e0b);
+        }
+
+        .hub-title-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 8px;
+        }
+
+        .hub-title {
+            font-size: clamp(20px, 4vw, 26px);
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .hub-title i {
+            color: var(--primary);
+        }
+
+        .live-badge {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 50px;
+            background: var(--primary-soft);
+            color: var(--primary);
+        }
+
+        .hub-desc {
+            font-size: 13.5px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        /* সার্চ বক্স */
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 15px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 13px 16px 13px 44px;
+            border-radius: 15px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 500;
+            outline: none;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px var(--primary-soft);
+        }
+
+        /* সতর্কতা নোট */
+        .notice-strip {
+            background: rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(217, 119, 6, 0.25);
+            border-left: 4px solid #d97706;
+            padding: 11px 14px;
+            border-radius: 14px;
+            font-size: 12.5px;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .notice-strip i {
+            color: #d97706;
+            font-size: 16px;
+            flex-shrink: 0;
+        }
+
+        /* সেকশন কার্ড */
+        .tool-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 24px;
+            padding: 20px;
+            box-shadow: var(--shadow-card);
+            animation: fadeInUp 0.65s ease both;
+        }
+
+        .sec-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 14px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .sec-title {
+            font-size: 16px;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 9px;
+        }
+
+        .sec-count {
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 50px;
+            background: var(--bg-subtle);
+            color: var(--text-muted);
+            border: 1px solid var(--border-color);
+        }
+
+        /* ইন্টেন্ট লঞ্চার গ্রিড (vnROM স্টাইল ক্লিন বাটন কার্ড) */
+        .intent-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(265px, 1fr));
+            gap: 11px;
+        }
+
+        .intent-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            padding: 12px 14px;
+            border-radius: 15px;
+            text-decoration: none;
+            color: var(--text-primary);
+            position: relative;
+        }
+
+        .intent-item:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 8px 18px -6px rgba(79, 70, 229, 0.22);
+        }
+
+        .intent-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .intent-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 17px;
+            flex-shrink: 0;
+            color: #ffffff;
+        }
+
+        .intent-info {
+            min-width: 0;
+        }
+
+        .intent-name {
+            font-size: 14px;
+            font-weight: 700;
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .intent-sub {
+            font-size: 11.5px;
+            color: var(--text-muted);
+            display: block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .open-pill {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: var(--primary-soft);
+            color: var(--primary);
+            flex-shrink: 0;
+        }
+
+        /* আইকন কালার ভ্যারিয়েন্ট */
+        .ic-indigo { background: linear-gradient(135deg, #4f46e5, #6366f1); }
+        .ic-blue   { background: linear-gradient(135deg, #0284c7, #38bdf8); }
+        .ic-amber  { background: linear-gradient(135deg, #d97706, #f59e0b); }
+        .ic-teal   { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+        .ic-red    { background: linear-gradient(135deg, #dc2626, #ef4444); }
+        .ic-green  { background: linear-gradient(135deg, #16a34a, #22c55e); }
+        .ic-pink   { background: linear-gradient(135deg, #db2777, #ec4899); }
+        .ic-dark   { background: linear-gradient(135deg, #334155, #0f172a); }
+
+        /* ইউনিক ফিচার: কাস্টম প্যাকেজ / ইন্টেন্ট লঞ্চার বক্স */
+        .custom-launcher-box {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .custom-input {
+            flex: 1;
+            min-width: 210px;
+            padding: 11px 14px;
+            border-radius: 12px;
+            border: 1.5px solid var(--border-color);
+            background: var(--bg-subtle);
+            color: var(--text-primary);
+            font-size: 13px;
+            outline: none;
+        }
+
+        .custom-input:focus {
+            border-color: var(--primary);
+        }
+
+        .launch-now-btn {
+            background: linear-gradient(135deg, #4f46e5, #0284c7);
+            color: #ffffff;
+            border: none;
+            padding: 11px 18px;
+            border-radius: 12px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .launch-now-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(79, 70, 229, 0.3);
+        }
+
+        .preset-chips {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 10px;
+        }
+
+        .preset-chip {
+            font-size: 11.5px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 8px;
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            cursor: pointer;
+        }
+
+        .preset-chip:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+        }
+
+        footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            padding-top: 6px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="main-wrapper">
+        
+        <!-- টপ নেভিগেশন -->
+        <nav class="top-nav">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span data-en="Back to Home" data-bn="হোম পেজে ফিরুন">Back to Home</span>
+            </a>
+
+            <div class="nav-controls">
+                <button class="pill-btn" onclick="toggleLanguage()">
+                    <i class="fas fa-language"></i> <span id="langText">বাংলা ভাষা</span>
+                </button>
+                <button class="pill-btn" onclick="toggleTheme()" id="themeBtn">
+                    <i class="fas fa-moon"></i> <span id="themeText" data-en="Dark" data-bn="ডার্ক">Dark</span>
+                </button>
+            </div>
+        </nav>
+
+        <!-- হেডার ও সার্চ -->
+        <section class="hub-header">
+            <div class="hub-strip"></div>
+            <div class="hub-title-row">
+                <h1 class="hub-title">
+                    <i class="fas fa-microchip"></i>
+                    <span data-en="Android Service & App Launcher Hub" data-bn="অ্যান্ড্রয়েড সার্ভিস ও অ্যাপ লঞ্চার হাব">Android Service & App Launcher Hub</span>
+                </h1>
+                <span class="live-badge">Mobile Mart Tech Utility</span>
+            </div>
+            <p class="hub-desc" 
+               data-en="Direct one-tap Android Intent shortcuts, system settings, lock setup, and brand-specific app launchers (Vivo, Oppo, OnePlus, Redmi, Samsung) for fast device diagnostics & maintenance."
+               data-bn="মোবাইল সার্ভিসিং ও ডায়াগনস্টিক কাজের জন্য এক ক্লিকেই সিস্টেম সেটিংস, স্ক্রিন লক এবং Vivo, Oppo, OnePlus, Redmi ও Samsung-এর প্রয়োজনীয় অ্যাপ ওপেন করার ডিরেক্ট ইন্টেন্ট হাব।">
+                Direct one-tap Android Intent shortcuts, system settings, lock setup, and brand-specific app launchers (Vivo, Oppo, OnePlus, Redmi, Samsung) for fast device diagnostics & maintenance.
+            </p>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" class="search-input" onkeyup="filterTools()" placeholder="Search tool, brand, or app (e.g., Settings, Vivo, Clone, Lock, Gmail)...">
+            </div>
+        </section>
+
+        <!-- সার্ভিসিং সতর্কতা -->
+        <div class="notice-strip">
+            <i class="fas fa-shield-alt"></i>
+            <span data-en="Authorized Technician Use Only: Intended for legitimate device repair, software maintenance, and owner-verified phone diagnostics."
+                  data-bn="শুধুমাত্র বৈধ সার্ভিসিংয়ের জন্য: এই টুলগুলো কেবল বৈধ মালিকানাধীন ডিভাইসের সফটওয়্যার মেরামত ও ডায়াগনস্টিক কাজের জন্য তৈরি।">
+                Authorized Technician Use Only: Intended for legitimate device repair, software maintenance, and owner-verified phone diagnostics.
+            </span>
+        </div>
+
+        <!-- সেকশন ১: কোর সিস্টেম ও সিকিউরিটি ইন্টেন্ট -->
+        <section class="tool-section" data-section>
+            <div class="sec-header">
+                <h2 class="sec-title">
+                    <i class="fas fa-sliders-h" style="color: var(--primary);"></i>
+                    <span data-en="Core System & Security Intents" data-bn="সিস্টেম ও সিকিউরিটি ইন্টেন্ট">Core System & Security Intents</span>
+                </h2>
+                <span class="sec-count">System Shortcuts</span>
+            </div>
+
+            <div class="intent-grid">
+                <!-- Open Settings -->
+                <a href="intent://com.android.settings/#Intent;scheme=android-app;end" class="intent-item" data-keywords="settings system android সেটিংস">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-indigo"><i class="fas fa-cog"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Open Settings" data-bn="সেটিংস ওপেন করুন">Open Settings</span>
+                            <span class="intent-sub">com.android.settings</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Set Screen Smart Lock -->
+                <a href="intent://com.google.android.gms/#Intent;scheme=promote_smartlock_scheme;end" class="intent-item" data-keywords="screen lock smartlock pin pattern password লক">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-amber"><i class="fas fa-lock"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Set Screen Smart Lock" data-bn="স্ক্রিন স্মার্ট লক সেট করুন">Set Screen Smart Lock</span>
+                            <span class="intent-sub">promote_smartlock_scheme</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Google Quick Search -->
+                <a href="intent://com.google.android.googlequicksearchbox/#Intent;scheme=android-app;end" class="intent-item" data-keywords="google search assistant voice গুগল সার্চ">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-blue"><i class="fab fa-google"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Google Search Box" data-bn="গুগল সার্চ বক্স">Google Search Box</span>
+                            <span class="intent-sub">googlequicksearchbox</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Open Chrome -->
+                <a href="intent://com.android.chrome/#Intent;scheme=android-app;end" class="intent-item" data-keywords="chrome browser web ক্রোম ব্রাউজার">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-teal"><i class="fab fa-chrome"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Open Chrome Browser" data-bn="ক্রোম ব্রাউজার">Open Chrome Browser</span>
+                            <span class="intent-sub">com.android.chrome</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Open YouTube -->
+                <a href="intent://com.google.android.youtube/#Intent;scheme=android-app;end" class="intent-item" data-keywords="youtube video ইউটিউব">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-red"><i class="fab fa-youtube"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Open YouTube" data-bn="ইউটিউব ওপেন করুন">Open YouTube</span>
+                            <span class="intent-sub">com.google.android.youtube</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Open Gmail -->
+                <a href="intent://com.google.android.gm/#Intent;scheme=android-app;end" class="intent-item" data-keywords="gmail email mail account জিমেইল">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-red"><i class="fas fa-envelope"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Open Gmail" data-bn="জিমেইল ওপেন করুন">Open Gmail</span>
+                            <span class="intent-sub">com.google.android.gm</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Google Play Store -->
+                <a href="intent://com.android.vending/#Intent;scheme=android-app;end" class="intent-item" data-keywords="play store apps google প্লে স্টোর">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-green"><i class="fab fa-google-play"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Google Play Store" data-bn="গুগল প্লে স্টোর">Google Play Store</span>
+                            <span class="intent-sub">com.android.vending</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+
+                <!-- Google Maps -->
+                <a href="intent://com.google.android.apps.maps/#Intent;scheme=android-app;end" class="intent-item" data-keywords="maps navigation location ম্যাপস">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-teal"><i class="fas fa-map-marked-alt"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Google Maps" data-bn="গুগল ম্যাপস">Google Maps</span>
+                            <span class="intent-sub">com.google.android.apps.maps</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Open</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- সেকশন ২: ব্র্যান্ড ভিত্তিক অ্যাপ ও স্টোর লঞ্চার (Vivo, Oppo, OnePlus, Redmi, Samsung) -->
+        <section class="tool-section" data-section>
+            <div class="sec-header">
+                <h2 class="sec-title">
+                    <i class="fas fa-mobile-alt" style="color: var(--accent-teal);"></i>
+                    <span data-en="Brand-Specific Apps & Stores" data-bn="ব্র্যান্ড ভিত্তিক অ্যাপ ও স্টোর">Brand-Specific Apps & Stores</span>
+                </h2>
+                <span class="sec-count">OEM Launchers</span>
+            </div>
+
+            <div class="intent-grid">
+                <!-- Vivo EasyShare -->
+                <a href="intent://com.vivo.easyshare/#Intent;scheme=android-app;end" class="intent-item" data-keywords="vivo easyshare easy share transfer ভিভো ইজি শেয়ার">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-blue"><i class="fas fa-share-alt"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Vivo EasyShare" data-bn="ভিভো ইজি শেয়ার (EasyShare)">Vivo EasyShare</span>
+                            <span class="intent-sub">Vivo • com.vivo.easyshare</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Vivo</span>
+                </a>
+
+                <!-- Vivo V-Appstore -->
+                <a href="intent://com.bbk.appstore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="vivo appstore store v-appstore ভিভো স্টোর">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-indigo"><i class="fas fa-store"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Vivo V-Appstore" data-bn="ভিভো অ্যাপ স্টোর">Vivo V-Appstore</span>
+                            <span class="intent-sub">Vivo • com.bbk.appstore</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Vivo</span>
+                </a>
+
+                <!-- Oppo & OnePlus Phone Clone -->
+                <a href="intent://com.coloros.backuprestore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oppo oneplus realme phone clone backup restore অপ্পো ওয়ানপ্লাস ফোন ক্লোন">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-green"><i class="fas fa-clone"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Oppo / OnePlus Phone Clone" data-bn="ফোন ক্লোন (Oppo / OnePlus)">Oppo / OnePlus Phone Clone</span>
+                            <span class="intent-sub">com.coloros.backuprestore</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Clone</span>
+                </a>
+
+                <!-- OnePlus Clone Phone (Alternative Package) -->
+                <a href="intent://com.oneplus.backuprestore/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oneplus clone phone backup ওয়ানপ্লাস ক্লোন">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-red"><i class="fas fa-sync-alt"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="OnePlus Clone Phone (Alt)" data-bn="ওয়ানপ্লাস ক্লোন ফোন">OnePlus Clone Phone (Alt)</span>
+                            <span class="intent-sub">com.oneplus.backuprestore</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">OnePlus</span>
+                </a>
+
+                <!-- Oppo / Realme App Market -->
+                <a href="intent://com.heytap.market/#Intent;scheme=android-app;end" class="intent-item" data-keywords="oppo realme app market store অপ্পো অ্যাপ মার্কেট">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-teal"><i class="fas fa-shopping-bag"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Oppo App Market" data-bn="অপ্পো অ্যাপ মার্কেট">Oppo App Market</span>
+                            <span class="intent-sub">Oppo/Realme • com.heytap.market</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Oppo</span>
+                </a>
+
+                <!-- Redmi / Xiaomi GetApps -->
+                <a href="intent://com.xiaomi.mipicks/#Intent;scheme=android-app;end" class="intent-item" data-keywords="redmi xiaomi poco getapps get apps store রেডমি গেট অ্যাপস">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-amber"><i class="fas fa-box-open"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Redmi / Xiaomi GetApps" data-bn="রেডমি গেট অ্যাপস (GetApps)">Redmi / Xiaomi GetApps</span>
+                            <span class="intent-sub">Xiaomi • com.xiaomi.mipicks</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Redmi</span>
+                </a>
+
+                <!-- Xiaomi ShareMe -->
+                <a href="intent://com.xiaomi.midrop/#Intent;scheme=android-app;end" class="intent-item" data-keywords="redmi xiaomi shareme mi drop শেয়ার মি">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-pink"><i class="fas fa-paper-plane"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Xiaomi ShareMe" data-bn="শাওমি শেয়ারমি (ShareMe)">Xiaomi ShareMe</span>
+                            <span class="intent-sub">Xiaomi • com.xiaomi.midrop</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Redmi</span>
+                </a>
+
+                <!-- Samsung My Files -->
+                <a href="intent://com.sec.android.app.myfiles/#Intent;scheme=android-app;end" class="intent-item" data-keywords="samsung my files file manager স্যামসাং মাই ফাইলস">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-amber"><i class="fas fa-folder-open"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Samsung My Files" data-bn="স্যামসাং মাই ফাইলস">Samsung My Files</span>
+                            <span class="intent-sub">Samsung • com.sec.android.app.myfiles</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Samsung</span>
+                </a>
+
+                <!-- Samsung Galaxy Store -->
+                <a href="intent://com.sec.android.app.samsungapps/#Intent;scheme=android-app;end" class="intent-item" data-keywords="samsung galaxy store apps স্যামসাং গ্যালাক্সি স্টোর">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-indigo"><i class="fas fa-bag-shopping"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Samsung Galaxy Store" data-bn="স্যামসাং গ্যালাক্সি স্টোর">Samsung Galaxy Store</span>
+                            <span class="intent-sub">Samsung • com.sec.android.app.samsungapps</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Samsung</span>
+                </a>
+
+                <!-- Activity Launcher (If Installed) -->
+                <a href="intent://de.szalkowski.activitylauncher/#Intent;scheme=android-app;end" class="intent-item" data-keywords="activity launcher hidden settings অ্যাক্টিভিটি লঞ্চার">
+                    <div class="intent-left">
+                        <div class="intent-icon ic-dark"><i class="fas fa-rocket"></i></div>
+                        <div class="intent-info">
+                            <span class="intent-name" data-en="Activity Launcher" data-bn="অ্যাক্টিভিটি লঞ্চার">Activity Launcher</span>
+                            <span class="intent-sub">de.szalkowski.activitylauncher</span>
+                        </div>
+                    </div>
+                    <span class="open-pill">Tool</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- সেকশন ৩: ইউনিক ফিচার - কাস্টম প্যাকেজ লঞ্চার -->
+        <section class="tool-section">
+            <div class="sec-header">
+                <h2 class="sec-title">
+                    <i class="fas fa-terminal" style="color: var(--accent-red);"></i>
+                    <span data-en="Custom App Package Launcher" data-bn="কাস্টম অ্যাপ প্যাকেজ লঞ্চার">Custom App Package Launcher</span>
+                </h2>
+                <span class="sec-count">Dynamic Intent</span>
+            </div>
+            <p style="font-size: 12.8px; color: var(--text-secondary);"
+               data-en="Need to open an app not listed above? Type its Android package name below and launch it directly via Intent."
+               data-bn="তালিকায় নেই এমন কোনো অ্যাপ ওপেন করতে চাইলে নিচে সেটির প্যাকেজ নাম লিখে সরাসরি ইন্টেন্টের মাধ্যমে ওপেন করুন।">
+                Need to open an app not listed above? Type its Android package name below and launch it directly via Intent.
+            </p>
+
+            <div class="custom-launcher-box">
+                <input type="text" id="customPkgInput" class="custom-input" placeholder="e.g. com.whatsapp or com.android.calculator2">
+                <button class="launch-now-btn" onclick="launchCustomPackage()">
+                    <i class="fas fa-external-link-alt"></i>
+                    <span data-en="Launch App" data-bn="অ্যাপ ওপেন করুন">Launch App</span>
+                </button>
+            </div>
+
+            <div class="preset-chips">
+                <span class="preset-chip" onclick="setPkg('com.whatsapp')">WhatsApp</span>
+                <span class="preset-chip" onclick="setPkg('com.google.android.apps.nbu.files')">Files by Google</span>
+                <span class="preset-chip" onclick="setPkg('com.android.calculator2')">Calculator</span>
+                <span class="preset-chip" onclick="setPkg('com.android.contacts')">Contacts</span>
+            </div>
+        </section>
+
+        <footer>
+            <p>© 2026 D Hossain • Mobile Mart Tech Hub, Sonamura. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        let currentLang = 'en';
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            const btn = document.getElementById('themeBtn');
+            const isLight = html.getAttribute('data-theme') === 'light';
+            const nextTheme = isLight ? 'dark' : 'light';
+            
+            html.setAttribute('data-theme', nextTheme);
+            
+            const icon = isLight ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+            const labelEn = isLight ? 'Light' : 'Dark';
+            const labelBn = isLight ? 'লাইট' : 'ডার্ক';
+            const currentLabel = currentLang === 'en' ? labelEn : labelBn;
+            
+            btn.innerHTML = `${icon} <span id="themeText" data-en="${labelEn}" data-bn="${labelBn}">${currentLabel}</span>`;
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'bn' : 'en';
+            document.getElementById('langText').textContent = currentLang === 'en' ? 'বাংলা ভাষা' : 'English';
+            document.querySelectorAll('[data-en]').forEach(el => {
+                el.textContent = el.getAttribute(`data-${currentLang}`);
+            });
+        }
+
+        // লাইভ সার্চ ফিল্টার
+        function filterTools() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const items = document.querySelectorAll('.intent-item');
+            
+            items.forEach(item => {
+                const text = item.innerText.toLowerCase();
+                const keywords = (item.getAttribute('data-keywords') || '').toLowerCase();
+                if (text.includes(query) || keywords.includes(query)) {
+                    item.style.display = 'flex';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        // কাস্টম প্যাকেজ লঞ্চার
+        function setPkg(pkgName) {
+            document.getElementById('customPkgInput').value = pkgName;
+        }
+
+        function launchCustomPackage() {
+            const pkg = document.getElementById('customPkgInput').value.trim();
+            if (!pkg) {
+                alert(currentLang === 'en' ? 'Please enter an Android package name.' : 'অনুগ্রহ করে একটি অ্যাপ প্যাকেজ নাম লিখুন।');
+                return;
+            }
+            window.location.href = `intent://${pkg}/#Intent;scheme=android-app;end`;
+        }
+    </script>
+</body>
+</html>
